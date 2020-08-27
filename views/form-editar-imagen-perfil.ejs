@@ -1,0 +1,21 @@
+<main class="contenedor contenedor-formularios">
+    <h1><%=title%></h1>
+    <form action="/editar-imagen-perfil" method="POST" enctype="multipart/form-data" class="default-form">
+        <div class="campo">
+            <label for="imagen">Imagen del grupo</label>
+            <input type="file" name="imagen" id="imagen" />
+        </div>
+        <% if (auth.imagen) {%>
+        <div class="campo">
+            <label for="imagen">Imagen Actual</label>
+            <img src="/uploads/perfil/<%=auth.imagen%>" alt="Imagen del grupo" name="ver" id="ver"
+                width="200" />
+        </div>
+        <% } else {%>
+        <p>No posee imagen actual</p>
+        <% } %>
+        <div class="campo enviar">
+            <input type="submit" class="btn btn-azul" value="Guardar Grupo" />
+        </div>
+    </form>
+</main>

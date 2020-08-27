@@ -1,0 +1,86 @@
+<main class="contenedor panel-administracion">
+    <h1><%=title %></h1>
+    <div class="contenedor-botones">
+        <a href="/nuevo-grupo" class="btn btn-amarillo mayuscula">nuevo grupo</a>
+        <a href="/nuevo-meeti" class="btn btn-azul mayuscula"> nuevo meeti</a>
+        <a href="/editar-perfil" class="btn btn-rosa mayuscula"> editar pérfil</a>
+        <a href="/editar-password" class="btn btn-verde mayuscula"> Cambiar Password</a>
+        <a href="/editar-imagen-perfil" class="btn btn-amarillo mayuscula"> editar imagen</a>
+    </div>
+    <div class="seccion-admin">
+        <h2> Próximos Meeti´s </h2>
+        <ul>
+            <% if(meeti.length) { %>
+            <% meeti.map(meetis => { %>
+            <li>
+                <% moment.locale('es'); %>
+                <% const dateTime = meetis.fecha+' '+meetis.hora %>
+                <div class="informacion-admin">
+                    <p class="fecha"><%= moment(dateTime).format('LLLL') %> Horas</p>
+                    <a href="/meeti/<%=meetis.slug%>">
+                        <h3><%= meetis.titulo %></h3>
+                    </a>
+                    <small><%= meetis.interesados.length %> Asistentes</small>
+                </div>
+                <div class="acciones contenedor-botones">
+                    <a href="/editar-meeti/<%=meetis.id%>" class="btn btn-amarillo">Editar</a>
+                    <a href="/ver-asistente/<%=meetis.id%>" class="btn btn-azul">Participantes</a>
+                    <a href="/eliminar-meeti/<%=meetis.id%>" class="btn btn-rosa">Eliminar</a>
+                </div>
+            </li>
+            <% }) %>
+            <% }  else {%>
+            <p>No hay meeti´s disponibles</p>
+            <% } %>
+        </ul>
+    </div>
+
+    <div class="seccion-admin">
+        <h2> Meeti´s Anteriores </h2>
+        <ul>
+            <% if(meet.length) { %>
+            <% meet.map(meetis => { %>
+            <li>
+                <% moment.locale('es'); %>
+                <% const dateTime = meetis.fecha+' '+meetis.hora %>
+                <div class="informacion-admin">
+                    <p class="fecha"><%= moment(dateTime).format('LLLL') %> Horas</p>
+                    <h3><%= meetis.titulo %></h3>
+                    <small><%= meetis.interesados.length %> Asistentes</small>
+                </div>
+                <div class="acciones contenedor-botones">
+                    <a href="/editar-meeti/<%=meetis.id%>" class="btn btn-amarillo">Editar</a>
+                    <a href="/ver-asistente/<%=meetis.id%>" class="btn btn-azul">Participantes</a>
+                    <a href="/eliminar-meeti/<%=meetis.id%>" class="btn btn-rosa">Eliminar</a>
+                </div>
+            </li>
+            <% }) %>
+            <% }  else {%>
+            <p>No hay meeti´s disponibles</p>
+            <% } %>
+        </ul>
+    </div>
+
+    <div class="seccion-admin">
+        <h2> Tus Grupos</h2>
+        <ul>
+            <% if(grupos.length) { %>
+            <% grupos.map(group => { %>
+            <li>
+                <div class="informacion-admin">
+                    <h3><%= group.nombre %></h3>
+                </div>
+                <div class="acciones contenedor-botones">
+                    <a href="/editar-grupo/<%=group.id%>" class="btn btn-amarillo">Editar</a>
+                    <a href="/editar-imagen/<%=group.id%>" class="btn btn-azul">Imagen</a>
+                    <a href="/eliminar-grupo/<%=group.id%>" class="btn btn-rosa">Eliminar</a>
+                </div>
+            </li>
+            <% }) %>
+            <% }  else {%>
+            <p>No hay grupos disponibles</p>
+            <% } %>
+
+        </ul>
+    </div>
+</main>
